@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slider</title>
+	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+
+	<div class="owl-carousel thumbnailSlider" data-slider-id="1">
+	    <div class="sliderImg"><img src="images/property-1.jpg" alt="img1" /></div>
+	    <div class="sliderImg"><img src="images/property-2.jpg" alt="img1" /></div>
+	    <div class="sliderImg"><img src="images/property-3.jpg" alt="img1" /></div>
+	    <div class="sliderImg"><img src="images/property-4.jpg" alt="img1" /></div>
+	    <div class="sliderImg"><img src="images/property-5.jpg" alt="img1" /></div>
+	    <div class="sliderImg"><img src="images/property-6.jpg" alt="img1" /></div>
+	    <div class="sliderImg"><img src="images/property-7.jpg" alt="img1" /></div>
+	    <div class="sliderImg"><img src="images/property-8.jpg" alt="img1" /></div>
+	    <div class="sliderImg"><img src="images/property-9.jpg" alt="img1" /></div>
+	    <div class="sliderImg"><img src="images/landing-home-6.png" alt="img1" /></div>
+	</div>
+	<div class="thumbSlideContainer">
+		<div class="owl-thumbs thumbImg thumbSLide" data-slider-id="1">
+		    <button class="owl-thumb-item thumbItem"><img src="images/property-1.jpg" alt="img1" /></button>
+		    <button class="owl-thumb-item thumbItem"><img src="images/property-2.jpg" alt="img1" /></button>
+		    <button class="owl-thumb-item thumbItem"><img src="images/property-3.jpg" alt="img1" /></button>
+		    <button class="owl-thumb-item thumbItem"><img src="images/property-4.jpg" alt="img1" /></button>
+		    <button class="owl-thumb-item thumbItem"><img src="images/property-5.jpg" alt="img1" /></button>
+		    <button class="owl-thumb-item thumbItem"><img src="images/property-6.jpg" alt="img1" /></button>
+		    <button class="owl-thumb-item thumbItem"><img src="images/property-7.jpg" alt="img1" /></button>
+		    <button class="owl-thumb-item thumbItem"><img src="images/property-8.jpg" alt="img1" /></button>
+		    <button class="owl-thumb-item thumbItem"><img src="images/property-9.jpg" alt="img1" /></button>
+		</div>
+		<div class="thumbNav">
+			<span class="thumbPrev"></span>
+			<span class="thumbNext"></span>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/owl.carousel.default.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.owl-carousel').owlCarousel({
+			thumbs: true,
+			thumbsPrerendered: true,
+		    loop:true,
+		    margin:10,
+		    center: true,
+		    responsiveClass:true,
+		    autoWidth:true,
+		    responsive:{
+		        0:{
+		            items:1,
+		            nav:true
+		        },
+		        600:{
+		            items:2,
+		            nav:false
+		        },
+		        1000:{
+		            items:4,
+		            nav:true,
+		        }
+		    }
+		})
+
+		let pagePerItem = 4;
+		let itemWidth = 220;
+		let itemHeight = 100;
+		let thumbContainer = $('.thumbSlideContainer');
+		let thumbSlide = $('.thumbSLide');
+		let count = 0;
+		// let thumbItem = $('.thumbItem');
+
+		let countItem = $('.thumbSLide').children().length;
+		let divideItem = Math.round(countItem/pagePerItem);
+		$(thumbContainer).css('max-width', `${pagePerItem*itemWidth+50}px`)
+		$(thumbContainer).height(itemHeight+'px');
+		$('.thumbItem').width(itemWidth +"px")
+
+		$('.thumbPrev').hide();;
+
+		$('.thumbNext').click(function() {
+			count= count+1;
+			$(thumbSlide).css({
+				'transform': `translateX(${-itemWidth*(pagePerItem*count)}px)`,
+				'transition': '0.5s ease-in-out all'
+			})
+			if(count === divideItem) {
+				$('.thumbNext').hide();
+			} else {
+				$('.thumbPrev, .thumbNext').show();
+			}
+		})
+		$('.thumbPrev').click(function() {
+			count= count-1;
+			$(thumbSlide).css({
+				'transform': `translateX(${-itemWidth*(pagePerItem*count)}px)`,
+				'transition': '0.5s ease-in-out all'
+			})
+			if(count === 0) {
+				$('.thumbPrev').hide();
+			} else {
+				$('.thumbNext, .thumbPrev').show();
+			}
+			
+		})
+
+		// console.log(x)
+	})
+</script>
+</html>
