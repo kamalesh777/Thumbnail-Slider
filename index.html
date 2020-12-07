@@ -30,7 +30,8 @@
 		    <button class="owl-thumb-item thumbItem"><img src="images/property-6.jpg" alt="img1" /></button>
 		    <button class="owl-thumb-item thumbItem"><img src="images/property-7.jpg" alt="img1" /></button>
 		    <button class="owl-thumb-item thumbItem"><img src="images/property-8.jpg" alt="img1" /></button>
-		    <button class="owl-thumb-item thumbItem"><img src="images/property-9.jpg" alt="img1" /></button>
+			<button class="owl-thumb-item thumbItem"><img src="images/property-9.jpg" alt="img1" /></button>
+			
 		</div>
 		<div class="thumbNav">
 			<span class="thumbPrev"></span>
@@ -67,21 +68,22 @@
 		    }
 		})
 
-		let pagePerItem = 4;
-		let itemWidth = 220;
-		let itemHeight = 100;
+		let pagePerItem = 6;
+		let itemWidth = 100;
+		let itemHeight = 80;
 		let thumbContainer = $('.thumbSlideContainer');
 		let thumbSlide = $('.thumbSLide');
 		let count = 0;
 		// let thumbItem = $('.thumbItem');
 
 		let countItem = $('.thumbSLide').children().length;
-		let divideItem = Math.round(countItem/pagePerItem);
-		$(thumbContainer).css('max-width', `${pagePerItem*itemWidth+50}px`)
+		let divideItem = Math.floor(countItem/pagePerItem);
+
+		$(thumbContainer).css('max-width', `${pagePerItem*itemWidth+100}px`)
 		$(thumbContainer).height(itemHeight+'px');
 		$('.thumbItem').width(itemWidth +"px")
 
-		$('.thumbPrev').hide();;
+		$('.thumbPrev').hide();
 
 		$('.thumbNext').click(function() {
 			count= count+1;
@@ -91,6 +93,7 @@
 			})
 			if(count === divideItem) {
 				$('.thumbNext').hide();
+				$('.thumbPrev').show();
 			} else {
 				$('.thumbPrev, .thumbNext').show();
 			}
@@ -103,6 +106,7 @@
 			})
 			if(count === 0) {
 				$('.thumbPrev').hide();
+				$('.thumbNext').show();
 			} else {
 				$('.thumbNext, .thumbPrev').show();
 			}
